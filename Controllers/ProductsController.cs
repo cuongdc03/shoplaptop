@@ -25,7 +25,6 @@ namespace Demo.Controllers
             Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Product, Category?> demoContext = _context.Product.Include(p => p.category);
             return View(await demoContext.ToListAsync());
         }
-
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
