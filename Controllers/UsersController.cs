@@ -44,6 +44,11 @@ namespace Demo.Controllers
 
             return View(user);
         }
+        public IActionResult Login()
+        {
+            //MAI LÀM
+            return View();
+        }
 
         // GET: Users/Create
         public IActionResult Create()

@@ -22,7 +22,13 @@ namespace Demo.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Product, Category?> demoContext = _context.Product.Include(p => p.category);
+           var demoContext = _context.Product.Include(p => p.category);
+            return View(await demoContext.ToListAsync());
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(int catId,string keyword)
+        {
+            var demoContext = _context.Product.Include(p => p.category).Where(p=>p.Name.Contains(keyword)&&p.CategoryId==catId);
             return View(await demoContext.ToListAsync());
         }
         // GET: Products/Details/5

@@ -1,6 +1,7 @@
 ﻿using Demo.Data;
 using Demo.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Demo.Controllers
@@ -16,7 +17,7 @@ namespace Demo.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Product.ToList());
+            return View(_context.Product.Include(p => p.category).ToList());
         }
 
         public IActionResult Privacy()
