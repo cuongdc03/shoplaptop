@@ -32,15 +32,20 @@
                 </form>
             </div>
             <div class="col-lg-4 col-6 text-right">
-                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <button class="dropdown-item" type="submit" formaction="">Sign in</button>
-                    <form action="test2_signup.html">
-                        <button class="dropdown-item" type="submit">Sign up</button>
-                    </form>
-
-
+                @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+				{<div>
+                <li><a href ="/Products/Create"type="button"  >Quản lí</li>
+                <li><a href="/Users/Logout " type="button">Thoát</li>
                 </div>
+                }
+                else if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                 {
+                <div><a href ="/Users/Logout "type="button"  >Thoát</div>
+                   }
+                else
+                {
+                <div><a href="/Users/Login " type="button" >Đăng nhập</div>
+                }
             </div>
         </div>
     </div>
